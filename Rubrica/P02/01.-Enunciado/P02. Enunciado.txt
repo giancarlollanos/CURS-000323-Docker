@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------------
+----------------------------- Contenedores simples -----------------------------
+--------------------------------------------------------------------------------
+
+Crear y gestionar contenedores en base a imágenes disponibles en repositorios públicos. 
+Aplicar los comandos de creación, inspección, logs, renombre y eliminación.
+

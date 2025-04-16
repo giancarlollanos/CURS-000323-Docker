@@ -1,0 +1,14 @@
+-- 01. Crear un container en base a imagen
+docker run -d --name mi-nginx -p 8080:80 nginx
+
+-- 02. Inspeccionar container
+docker inspect mi-nginx
+
+-- 03. Logs container
+docker logs mi-nginx
+
+-- 04. Renombrar container
+docker rename mi-nginx mi-nginx-v2
+
+-- 05. Eliminar container
+docker rm [id_container]

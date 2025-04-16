@@ -1,0 +1,59 @@
+-- 01. Creación del api en NET 8.0
+-- 01.1 Dockerfile
+	------------------------------------------------
+	FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+	WORKDIR /src
+	COPY . .
+	RUN dotnet restore "Galaxy.Core.Api/Galaxy.Core.Api.csproj"
+
+	FROM build AS publish
+	RUN dotnet publish "Galaxy.Core.Api/Galaxy.Core.Api.csproj" -c Release -o /app/publish
+
+
+	FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+	EXPOSE 5000
+	EXPOSE 5001
+	WORKDIR /app
+	COPY --from=publish /app/publish .
+	ENTRYPOINT ["dotnet", "Galaxy.Core.Api.dll"]
+	------------------------------------------------
+	
+-- Dirigir la ruta en dockerfile
+direccionar a la ruta donde se encuentra el dockerfile
+	
+-- 01.2 Creación de la imagen
+docker build -t img-api-prueba:1.0 .
+
+-- 01.3 Creación del container
+docker run -p 5000:5000 --name=api-prueba-v1 -p 5001:5001 -e ASPNETCORE_ENVIRONMENT=Development -e ASPNETCORE_URLS="http://+:5000" img-api-prueba:1.0
+
+
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+-- 02. Creación del frontend en angular 19
+-- 02.1 Dockerfile
+	------------------------------------------------
+	# Etapa 1: Build de Angular
+	FROM node:alpine
+
+	WORKDIR /usr/src/app
+
+	# Copia el resto del proyecto
+	COPY . /usr/src/app
+
+	# Instala Angular CLI globalmente
+	RUN npm install -g @angular/cli
+	RUN npm install --force
+
+	# Comando para desarrollo
+	CMD ["ng", "serve", "--host", "0.0.0.0"]
+	------------------------------------------------
+
+-- Dirigir la ruta en dockerfile
+direccionar a la ruta donde se encuentra el dockerfile
+
+-- 02.2 Creación de la imagen
+docker build -t img-web-prueba:1.0 .
+
+-- 02.3 Creación del container
+docker run --name web-prueba -p 4200:4200 -d img-web-prueba:1.0

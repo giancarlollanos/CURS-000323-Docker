@@ -1,0 +1,25 @@
+-- 01. Crear redes
+docker network create db-network-gllanos
+docker network ls
+
+-- 02. Inspeccionar red
+docker inspect db-network-gllanos
+
+-- 03. Renombrar red
+
+
+-- 04. Eliminar red
+docker network rm db-network-gllanos
+
+-- 05. Conectar red
+docker network connect db-network-gllanos sql-server
+docker inspect db-network-gllanos
+
+-- 06. Desconectar red
+docker network disconnect db-network-gllanos sql-server
+docker inspect db-network-gllanos
+
+-- 07. Utilizar una red creada para un contenedor
+docker network create db-network-gllanos-v1
+docker network ls
+docker run -d --name mi-nginx -p 8080:80 --network=db-network-gllanos-v1 nginx

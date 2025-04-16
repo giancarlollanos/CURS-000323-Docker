@@ -1,0 +1,26 @@
+-- 01. Crear un container de bd SQL Server, usando localmente el propio managment
+	web Docker sql: https://hub.docker.com/r/microsoft/mssql-server
+
+SQL SERVER 
+----------
+docker run --name sql-server -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=123abc$123" -p 1436:1433 --hostname sql1 -d mcr.microsoft.com/mssql/server:2019-latest
+
+-- Credenciales de datos sql
+	*Nombre del servidor:	localhost,1436
+	*Autenticacion:			Autenticacion de SQL Server
+		*Inicio de sesión:	sa
+		*Contraseña:		123abc$123
+
+-----------------------------------------------------------------------------------
+-- 02. Crear un container de bd MySQL, usando localmente el Dbeaver
+
+MYSQL
+-----
+docker run --name mysql-server -e MYSQL_ROOT_PASSWORD=123abc$123 -e MYSQL_DATABASE=db_prueba -p 3307:3306 -d mysql:9.2.0
+
+-----------------------------------------------------------------------------------
+-- 03. Crear un container de bd MariaDB, usando localmente el Dbeaver
+
+MariaDB
+-------
+docker run --name mariadb-db -e MYSQL_ROOT_PASSWORD=123abc$123 -e MYSQL_DATABASE=db_prueba -p 3308:3306 -d mariadb:10.5

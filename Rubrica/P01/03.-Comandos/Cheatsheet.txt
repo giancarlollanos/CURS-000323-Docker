@@ -1,0 +1,20 @@
+-- Listar containers
+docker ps
+
+-- Listar containers totales
+docker ps -a
+
+-- Listar imagenes
+docker images
+
+-- Crear una imagen
+docker build -t [nombre] .
+
+-- Crear un containers
+docker run --name [container] [image]
+
+-- Eliminar container
+docker rm [container_id]
+
+-- ELiminar imagen
+docker rmi [imagen_id]

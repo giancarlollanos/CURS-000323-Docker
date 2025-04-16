@@ -1,0 +1,8 @@
+--------------------------------------------------------------------------------
+----------------------------- Redes y conectividad -----------------------------
+--------------------------------------------------------------------------------
+
+Crear redes y gestionar redes personalizadas. Aplicar los comandos de creación,
+inspección, renombre y eliminación. Conectar/desconectar contenedores ya creados,
+y también utilizar redes al momento de su creación.
+
